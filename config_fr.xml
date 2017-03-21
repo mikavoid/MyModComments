@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>mymodcomments</name>
+	<displayName><![CDATA[Mon module de commentaire produits]]></displayName>
+	<version><![CDATA[0.2.0]]></version>
+	<description><![CDATA[Avec ce module, vos clients pourront noter et commenter vos produits]]></description>
+	<author><![CDATA[Micka&euml;l BOULAT - Maia Solutions]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>
