@@ -1,1 +1,1 @@
-<h1>coucou</h1>
+<script src="{$pc_base_dir}views/js/mymodcomments-backoffice.js"></script>

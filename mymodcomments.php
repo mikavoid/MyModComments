@@ -84,7 +84,8 @@ class MyModComments extends Module
         }
 
         // Enregistrement sur les hooks
-        if (!$this->registerHook('displayProductTabContent')) {
+        if (!$this->registerHook('displayProductTabContent')
+                || !$this->registerHook('displayBackOfficeHeader')) {
             return false;
         }
 
@@ -111,6 +112,11 @@ class MyModComments extends Module
 
 
         return true;
+    }
+
+    public function hookDisplayBackOfficeHeader($params) {
+        $this->context->smarty->assign('pc_base_dir', __PS_BASE_URI__ . 'modules/' . $this->name . '/');
+        return $this->display(__FILE__, 'displayBackOfficeHeader.tpl');
     }
 
     public function hookDisplayProductTabContent($params) {
@@ -180,5 +186,26 @@ class MyModComments extends Module
         // retrouner le résultat
         return $result;
     }
+
+    // Callbacks
+  public function onClickOption($type, $href = false) {
+        $confirm_reset = $this->l('reseting this module will delete all comments from your database, are you sure you want to reset it ?');
+        $confirm_delete = $this->l('Confirm delete ?');
+
+        $reset_callback = "return my_modcomments_reset('bouh " . addslashes($confirm_reset) . "');";
+        $delete_callback = "return my_modcomments_reset('" . addslashes($confirm_delete) . "');";
+
+        $matchType = array(
+            'reset' => $reset_callback,
+            'delete' => $delete_callback
+        );
+
+        if (isset($matchType[$type])) {
+            return $matchType[$type];
+        }
+        return '';
+    }
+
+
 
 }
